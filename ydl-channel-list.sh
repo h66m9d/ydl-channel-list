@@ -11,4 +11,4 @@ playlistuploadername=$(cat /tmp/ydlls)
 playlistuploadernamenonespace=echo $playlistuploadername | tr ' ' '_'
 tar -czvf ../$playlistuploadernamenonespace.tar.gz *
 cd ..
-rm -r $randomdir
+# rm -r $randomdir
