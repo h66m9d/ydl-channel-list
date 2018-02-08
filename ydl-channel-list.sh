@@ -3,9 +3,6 @@ randomdir=$RANDOM
 mkdir $randomdir
 cd $randomdir
 read -p "PLAYLIST(1) OR CHANNEL(2)? [1/2]: " -e -i 2 todo
-			if [[ "$todo" = '1' ]]; then
-      
-      fi
       if [[ "$todo" = '2' ]]; then
           read -p "Enter Channel Playlist URL: " channelplaylisturl
 curl $channelplaylisturl > /tmp/page
