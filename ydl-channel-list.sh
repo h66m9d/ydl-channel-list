@@ -9,6 +9,7 @@ youtube-dl --yes-playlist -r 4096k -o "%(playlist_uploader)s/%(playlist)s/%(play
 ls > /tmp/ydlls
 playlistuploadername=`cat /tmp/ydlls`
 playlistuploadernamenonespace=`echo $playlistuploadername | tr ' ' '_'`
-tar -czvf ../$playlistuploadernamenonespace.tar.gz *
+tar -czvf ../$playlistuploadernamenonespace.tar.gz * ../downloaded.txt
 cd ..
-# rm -r $randomdir
+rm downloaded.txt
+rm -r $randomdir
