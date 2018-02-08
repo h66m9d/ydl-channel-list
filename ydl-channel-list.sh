@@ -7,8 +7,8 @@ curl $channelplaylisturl > /tmp/page
 sed -n 's/.*href="\([^"]*\).*/\1/p' /tmp/page | grep "?list" | cut -d"=" -f2 | sort -u > /tmp/list
 youtube-dl --yes-playlist -r 4096k -o "%(playlist_uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" --download-archive "../downloaded.txt" --ignore-errors $listurl --batch-file /tmp/list
 ls > /tmp/ydlls
-playlistuploadername=$(cat /tmp/ydlls)
-playlistuploadernamenonespace=echo $playlistuploadername | tr ' ' '_'
+playlistuploadername=`cat /tmp/ydlls`
+playlistuploadernamenonespace=`echo $playlistuploadername | tr ' ' '_'`
 tar -czvf ../$playlistuploadernamenonespace.tar.gz *
 cd ..
 # rm -r $randomdir
