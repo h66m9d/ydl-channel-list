@@ -13,7 +13,7 @@ read -p "Playlist(1) OR Channel(2) or SingleVideo(3)? [1/2/3]: " -e -i 2 todo
 			echo $playlisturl | cut -d"=" -f3 >> /tmp/list
 			read -p "Add more? [y/n] " -e -i "y" addtoplaylisttrue
 		done
-		cat /tmp/list | grep "PL" | sort -u > /tmp/list
+		#cat /tmp/list | grep "PL" | sort -u > /tmp/list
 		cat /tmp/list
 		videofilename="%(playlist_uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"
 		yesplaylist="--yes-playlist"
@@ -21,7 +21,7 @@ read -p "Playlist(1) OR Channel(2) or SingleVideo(3)? [1/2/3]: " -e -i 2 todo
 		read -p "Enter Channel Playlists URL (eg: https://www.youtube.com/user/VEVO/playlists): " channelplaylisturl
 		curl $channelplaylisturl > /tmp/page
 		sed -n 's/.*href="\([^"]*\).*/\1/p' /tmp/page | grep "?list" | cut -d"=" -f2 | sort -u > /tmp/list
-		cat /tmp/list | grep "PL" | sort -u > /tmp/list
+		#cat /tmp/list | grep "PL" | sort -u > /tmp/list
 		videofilename="%(playlist_uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"
 		yesplaylist="--yes-playlist"
 	elif [[ "$todo" = '3' ]]; then
