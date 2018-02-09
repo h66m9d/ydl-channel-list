@@ -14,6 +14,7 @@ read -p "Playlist(1) OR Channel(2) or SingleVideo(3)? [1/2/3]: " -e -i 2 todo
 			read -p "Add more? [y/n] " -e -i "y" addtoplaylisttrue
 		done
 		cat /tmp/list | grep "PL" | sort -u > /tmp/list
+		cat /tmp/list
 		videofilename="%(playlist_uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"
 		yesplaylist="--yes-playlist"
 	elif [[ "$todo" = '2' ]]; then
