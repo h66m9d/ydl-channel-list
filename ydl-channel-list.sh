@@ -15,14 +15,14 @@ read -p "Playlist(1) OR Channel(2) or SingleVideo(3)? [1/2/3]: " -e -i 2 todo
 		done
 		#cat /tmp/list | grep "PL" | sort -u > /tmp/list
 		cat /tmp/list
-		videofilename='"%(playlist_uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
+		videofilename="%(playlist_uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"
 		yesplaylist="--yes-playlist"
 	elif [[ "$todo" = '2' ]]; then
 		read -p "Enter Channel Playlists URL (eg: https://www.youtube.com/user/VEVO/playlists): " channelplaylisturl
 		curl $channelplaylisturl > /tmp/page
 		sed -n 's/.*href="\([^"]*\).*/\1/p' /tmp/page | grep "?list" | cut -d"=" -f2 | sort -u > /tmp/list
 		#cat /tmp/list | grep "PL" | sort -u > /tmp/list
-		videofilename='"%(playlist_uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
+		videofilename="%(playlist_uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"
 		yesplaylist="--yes-playlist"
 	elif [[ "$todo" = '3' ]]; then
 		addtoplaylisttrue="y"
@@ -37,7 +37,7 @@ read -p "Playlist(1) OR Channel(2) or SingleVideo(3)? [1/2/3]: " -e -i 2 todo
 		exit
 	fi
 for x in seq 1 2 ; do
-	youtube-dl $yesplaylist -r 8192k -o $videofilename --download-archive "$archivenamenonespace.downloaded.txt" --ignore-errors --batch-file /tmp/list
+	youtube-dl $yesplaylist -r 8192k -o "$videofilename" --download-archive "$archivenamenonespace.downloaded.txt" --ignore-errors --batch-file /tmp/list
 done
 yesplaylist=""
 cd ..
