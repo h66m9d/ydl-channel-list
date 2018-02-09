@@ -15,21 +15,21 @@ read -p "Playlist(1) OR Channel(2) or SingleVideo(3)? [1/2/3]: " -e -i 2 todo
 		done
 		#cat /tmp/list | grep "PL" | sort -u > /tmp/list
 		cat /tmp/list
-		videofilename="%(playlist_uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"
+		videofilename='"%(playlist_uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
 		yesplaylist="--yes-playlist"
 	elif [[ "$todo" = '2' ]]; then
 		read -p "Enter Channel Playlists URL (eg: https://www.youtube.com/user/VEVO/playlists): " channelplaylisturl
 		curl $channelplaylisturl > /tmp/page
 		sed -n 's/.*href="\([^"]*\).*/\1/p' /tmp/page | grep "?list" | cut -d"=" -f2 | sort -u > /tmp/list
 		#cat /tmp/list | grep "PL" | sort -u > /tmp/list
-		videofilename="%(playlist_uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"
+		videofilename='"%(playlist_uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
 		yesplaylist="--yes-playlist"
 	elif [[ "$todo" = '3' ]]; then
 		addtoplaylisttrue="y"
 		while [  $addtoplaylisttrue == "y" ]; do
 			read -p "Enter video URL (eg: https://www.youtube.com/watch?v=nfWlot6h_JM): " videourl
 			echo $videourl | cut -d"=" -f2 | cut -d"&" -f1 >> /tmp/list
-			videofilename="%(uploader)s/%(title)s.%(ext)s"
+			videofilename='"%(uploader)s/%(title)s.%(ext)s"'
 			read -p "Add more? [y/n] " -e -i "y" addtoplaylisttrue
 		done
 		yesplaylist=""
