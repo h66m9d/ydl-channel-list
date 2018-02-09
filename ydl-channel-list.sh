@@ -34,7 +34,7 @@ youtube-dl $yesplaylist -r 8192k -o $videofilename --download-archive "$archiven
 done
 yesplaylist=""
 cd ..
-tar -czvf $archivenamenonespace.tar.gz $archivenamenonespace/* $archivenamenonespace.downloaded.txt --remove-files
+tar -czvf $archivenamenonespace.tar.gz $archivenamenonespace/* --remove-files
 rm -r $archivenamenonespace
 rm -f  /tmp/list
 rm -f  /tmp/page
