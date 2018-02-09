@@ -4,6 +4,11 @@ mkdir $randomdir
 cd $randomdir
 read -p "PLAYLIST(1) OR CHANNEL(2)? [1/2]: " -e -i 2 todo
       if [[ "$todo" = '2' ]]; then
+          read -p "Enter Playlist URL: " playlisturl
+curl $playlisturl >> /tmp/page
+sed -n 's/.*href="\([^"]*\).*/\1/p' /tmp/page | grep "?list" | cut -d"=" -f2 | sort -u > /tmp/list
+      fi
+      if [[ "$todo" = '2' ]]; then
           read -p "Enter Channel Playlist URL: " channelplaylisturl
 curl $channelplaylisturl > /tmp/page
 sed -n 's/.*href="\([^"]*\).*/\1/p' /tmp/page | grep "?list" | cut -d"=" -f2 | sort -u > /tmp/list
